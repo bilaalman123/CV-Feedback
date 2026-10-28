@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bilaal Abrahams – What people say</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f5f9; --surface:#ffffff; --text:#1c2333; --muted:#5b6579; --line:#d9deea;
+  --c-mgmt:#c4223f; --c-col:#a8760a; --c-cli:#1d7fc4;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#323c4e; --surface:#3b4659; --text:#f2f4f8; --muted:#b4bccb; --line:#51607a;
+    --c-mgmt:#ff6b81; --c-col:#ffc933; --c-cli:#5cc4ff;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#323c4e; --surface:#3b4659; --text:#f2f4f8; --muted:#b4bccb; --line:#51607a;
+  --c-mgmt:#ff6b81; --c-col:#ffc933; --c-cli:#5cc4ff;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+main{max-width:860px;margin:0 auto;padding:40px 20px 56px}
+h1{font-size:clamp(2.4rem,9vw,4rem);line-height:1.02;margin:0 0 14px;font-weight:700;letter-spacing:-.02em}
+.lede{font-size:1.05rem;color:var(--muted);margin:0 0 44px;max-width:34ch}
+section{margin:0 0 40px}
+h2{display:flex;align-items:center;gap:10px;font-size:1.15rem;font-weight:600;margin:0 0 14px}
+h2::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--c)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:var(--surface);border-left:5px solid var(--c);border-radius:6px 14px 14px 6px;padding:16px 18px 18px}
+.name{font-weight:600;font-size:1.02rem;margin:0}
+.role{color:var(--muted);font-size:.86rem;margin:2px 0 12px}
+.words{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.words li{font-size:.84rem;padding:3px 11px;border-radius:999px;border:1px solid color-mix(in srgb,var(--c) 55%,transparent);background:color-mix(in srgb,var(--c) 16%,transparent)}
+.mgmt{--c:var(--c-mgmt)} .col{--c:var(--c-col)} .cli{--c:var(--c-cli)}
+footer{border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:.84rem}
+</style>
+</head>
+<body>
+<main>
+  <h1>Bilaal<br>Abrahams</h1>
+  <p class="lede">Each person below picked the five words that best describe me.</p>
+  <div id="out"></div>
+  <footer>Collected through a short online form. Everyone here agreed to share their answers.</footer>
+</main>
+<script>
+var groups=[
+ {cls:"mgmt",title:"Managers & directors",people:[
+  ["Vadinie Vather","Group Head Admin, Love Padel",["Accountable","Lifts the room","Gets things done","Trustworthy","Empathetic"]],
+  ["Janine Turner","Director, EduCore Solutions",["Trustworthy","Thinks outside the box","Team player","Carries a positive attitude","Reliable"]],
+  ["Tasneem Abrahams","Founder & Director, Private Practice Growth Club",["Goes the extra mile","Reliable","Trustworthy","Team player","Great with technology"]]
+ ]},
+ {cls:"col",title:"Colleagues",people:[
+  ["Teagan Denise Rolfe","Former colleague, Love Padel",["Goes the extra mile","Great with technology","Empathetic","Speaks up","Trustworthy"]],
+  ["Phathutshedzo Leshiba","Former colleague, Love Padel",["Trustworthy","Team player","Reliable","Gets things done","Solutions-focused"]]
+ ]},
+ {cls:"cli",title:"Clients & parents",people:[
+  ["Teri-lee Melian","Regular customer, Love Padel",["Proactive","Calm under pressure","Lifts the room","Goes the extra mile","Thinks outside the box"]],
+  ["Dean Lauryssen","Regular customer, Love Padel",["Trustworthy","Carries a positive attitude","Team player","Solutions-focused","Goes the extra mile"]],
+  ["Liebenette Liebenberg","Client, Love Padel",["Solutions-focused","Calm under pressure","Trustworthy","Carries a positive attitude","Always shows up"]],
+  ["Rajeshwari Budree","Tutoring parent, EduCore Solutions",["Goes the extra mile","Solutions-focused","Calm under pressure","Reliable","Takes initiative"]],
+  ["Jabulile Sobikwa","Tutoring parent, EduCore Solutions",["Solutions-focused","Detail-oriented","Speaks up","Proactive","Carries a positive attitude"]]
+ ]}
+];
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+document.getElementById("out").innerHTML=groups.map(function(g){
+  return '<section class="'+g.cls+'"><h2>'+esc(g.title)+'</h2><div class="grid">'+
+    g.people.map(function(p){
+      return '<article class="card"><p class="name">'+esc(p[0])+'</p><p class="role">'+esc(p[1])+'</p><ul class="words">'+
+        p[2].map(function(w){return '<li>'+esc(w)+'</li>'}).join('')+'</ul></article>';
+    }).join('')+'</div></section>';
+}).join('');
+</script>
+</body>
+</html>
